@@ -1,0 +1,16 @@
+<% @tweets.each do |tweet| %>
+ <% if tweet.rough1.blank? %>
+   <% tweet.rough1 = 0 %>
+ <% end %> 
+ <% if tweet.rough2.blank? %>
+   <% tweet.rough2 = 0 %>
+ <% end %>
+ <% if tweet.rough3.blank? %>
+   <% tweet.rough3 = 0 %>
+ <% end %>
+<p><%= tweet.created_at %></p>
+<p>税抜き見積もり合算　　<%=tweet.rough1 + tweet.rough2 + tweet.rough3 %></p>
+<p>税込み見積もり合算　　<%= ((tweet.rough1 + tweet.rough2 + tweet.rough3) * 1.1) .round%>　</p> 
+<p>３７％ 税込み見積　 　<%= ((tweet.rough1 + tweet.rough2 + tweet.rough3) * 0.5714 /0.63 *1.1) .round%>　</p>
+<p> 差額　               <%= (((tweet.rough1 + tweet.rough2 + tweet.rough3) * 1.1) .round) - (((tweet.rough1 + tweet.rough2 + tweet.rough3) * 0.5714 /0.63 *1.1) .round) %> </p>
+<% end %>
